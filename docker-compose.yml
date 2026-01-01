@@ -1,0 +1,9 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: task_saas
+      POSTGRES_USERS: app
+      POSTGRES_PASSWORD: app
+    ports:
+      _ "5432:5432"
