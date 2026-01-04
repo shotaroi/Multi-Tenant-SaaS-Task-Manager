@@ -1,13 +1,11 @@
 package com.shotaroi.multitenantsaastaskmanager;
 
-import com.shotaroi.multitenantsaastaskmanager.security.SecurityConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
-import org.springframework.context.annotation.Import;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@Import(SecurityConfig.class)
-@SpringBootApplication(exclude = UserDetailsServiceAutoConfiguration.class)
+@SpringBootApplication
+@EnableJpaRepositories("com.shotaroi.multitenantsaastaskmanager.repository")
 public class MultiTenantSaaSTaskManagerApplication {
 
     public static void main(String[] args) {
