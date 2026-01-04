@@ -4,6 +4,7 @@ spring:
     username: app
     password: app
   jpa:
+    open-in-view: false
     hibernate:
       ddl-auto: validate
     properties:
