@@ -17,3 +17,9 @@ spring:
 
 server:
   port: 8080
+
+app:
+  jwt:
+    secret: "change_me_to_a_very_long_random_string_at_least_32_chars"
+    issuer: "multi-tenant-saas-task-manager"
+    accessTokenMinutes: 60
