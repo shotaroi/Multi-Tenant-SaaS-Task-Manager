@@ -24,10 +24,16 @@ public class SecurityConfig {
 
     private final JwtService jwtService;
     private final ObjectMapper objectMapper;
+    private final OrgAuthorizationFilter orgAuthorizationFilter;
 
-    public SecurityConfig(JwtService jwtService, ObjectMapper objectMapper) {
+
+    public SecurityConfig(JwtService jwtService,
+                          ObjectMapper objectMapper,
+                          OrgAuthorizationFilter orgAuthorizationFilter
+    ) {
         this.jwtService = jwtService;
         this.objectMapper = objectMapper;
+        this.orgAuthorizationFilter = orgAuthorizationFilter;
     }
 
     @Bean
@@ -73,7 +79,8 @@ public class SecurityConfig {
                         .requestMatchers("/auth/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                .addFilterBefore(new JwtAuthFilter(jwtService), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(new JwtAuthFilter(jwtService), UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(orgAuthorizationFilter, JwtAuthFilter.class);
 
         return http.build();
     }
